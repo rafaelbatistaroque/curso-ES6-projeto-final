@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "especie": "tucano",
+        "quantidade": 4865
+    },
+    {
+        "id": 2,
+        "especie": "Onça Pintada",
+        "quantidade": 893
+    },
+    {
+        "id": 3,
+        "especie": "Mico Leão Dourado",
+        "quantidade": 101
+    },
+    {
+        "id": 4,
+        "especie": "Tamanduá Bandeira",
+        "quantidade": 6423
+    },
+    {
+        "id": 5,
+        "especie": "Veado Mateiro",
+        "quantidade": 9877
+    },
+    {
+        "id": 6,
+        "especie": "Lobo Guará",
+        "quantidade": 2331
+    }
+]
