@@ -1,4 +1,4 @@
-import ativarScrollSuaveMenu from "./modules/scroll-suave.js";
+import ScrollSuaveMenu from "./modules/scroll-suave.js";
 import ativarAnimacaoSections from "./modules/animacao-sections.js";
 import mostrarRespostasFAQ from "./modules/animacao-faq.js";
 import mostrarDescricaoAnimais from "./modules/tab-animais.js";
@@ -10,9 +10,11 @@ import tratarDadosAnimais from "./modules/numeros-animais.js";
 import mostrarExpediente from "./modules/expediente.js";
 import mostrarPrecoBitcoin from "./modules/cafezinho-bitcoin.js";
 
+const scrollSuave = new ScrollSuaveMenu('[data-tab="nav"] a[href^="#"]');
+scrollSuave.iniciar();
+
 ativarAnimacaoSections();
 mostrarDescricaoAnimais();
-ativarScrollSuaveMenu();
 mostrarRespostasFAQ();
 mostrarModalLogin();
 mostrarToolTip();
