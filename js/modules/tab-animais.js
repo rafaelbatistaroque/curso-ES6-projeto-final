@@ -10,15 +10,16 @@ export default class TabDescricaoAnimais {
 
         this.boxConteudo[index].classList.add(this.classeAtiva, direcao);
     }
+    adicionarEventoDescricaoAnimais() {
+        this.imgAnimais.forEach((imgAnimal, index) =>
+            imgAnimal.addEventListener('click', () =>
+                this.ativarConteudoDeAcordoComImagem(index)));
+    }
     iniciar() {
         if (this.imgAnimais.length && this.boxConteudo.length) {
             this.ativarConteudoDeAcordoComImagem(0);
             this.adicionarEventoDescricaoAnimais();
         }
-    }
-    adicionarEventoDescricaoAnimais() {
-        this.imgAnimais.forEach((imgAnimal, index) =>
-            imgAnimal.addEventListener('click', () =>
-                this.ativarConteudoDeAcordoComImagem(index)));
+        return this;
     }
 }

@@ -2,7 +2,7 @@ import ScrollSuaveMenu from "./modules/scroll-suave.js";
 import ativarAnimacaoSections from "./modules/animacao-sections.js";
 import AcordeonAnimacao from "./modules/animacao-faq.js";
 import TabDescricaoAnimais from "./modules/tab-animais.js";
-import mostrarModalLogin from "./modules/modal.js";
+import ModalLogin from "./modules/modal.js";
 import mostrarToolTip from "./modules/tool-tip.js";
 import mostrarDropDownMenu from "./modules/dropdown-menu.js";
 import mostrarMenuMobile from "./modules/menu-mobile.js";
@@ -19,8 +19,10 @@ acordeonAnimacao.iniciar();
 const tabDescricaoAnimais = new TabDescricaoAnimais('[data-tab="menu"] li', '[data-tab="content"] section');
 tabDescricaoAnimais.iniciar();
 
+const janelaModalLogin = new ModalLogin('[data-modal="abrir"]', '[data-modal="fechar"]', '[data-modal="container"]');
+janelaModalLogin.iniciar();
+
 ativarAnimacaoSections();
-mostrarModalLogin();
 mostrarToolTip();
 mostrarDropDownMenu();
 mostrarMenuMobile();
