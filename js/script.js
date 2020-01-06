@@ -1,6 +1,6 @@
 import ScrollSuaveMenu from "./modules/scroll-suave.js";
 import ativarAnimacaoSections from "./modules/animacao-sections.js";
-import mostrarRespostasFAQ from "./modules/animacao-faq.js";
+import AcordeonAnimacao from "./modules/animacao-faq.js";
 import mostrarDescricaoAnimais from "./modules/tab-animais.js";
 import mostrarModalLogin from "./modules/modal.js";
 import mostrarToolTip from "./modules/tool-tip.js";
@@ -13,9 +13,11 @@ import mostrarPrecoBitcoin from "./modules/cafezinho-bitcoin.js";
 const scrollSuave = new ScrollSuaveMenu('[data-tab="nav"] a[href^="#"]');
 scrollSuave.iniciar();
 
+const acordeonAnimacao = new AcordeonAnimacao('[data-tab="acordeon"] dt');
+acordeonAnimacao.iniciar();
+
 ativarAnimacaoSections();
 mostrarDescricaoAnimais();
-mostrarRespostasFAQ();
 mostrarModalLogin();
 mostrarToolTip();
 mostrarDropDownMenu();

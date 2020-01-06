@@ -1,15 +1,25 @@
-export default function mostrarRespostasFAQ() { //🔽
-    const listaPerguntasFAQ = document.querySelectorAll('[data-tab="acordeon"] dt');
-    const classeAtiva = 'ativo';
-
-    function ativarAcordeon() {
-        this.classList.toggle(classeAtiva);
-        this.nextElementSibling.classList.toggle(classeAtiva);
+export default class AcordeonAnimacao {
+    constructor(listaItens) {
+        this.listaPerguntasFAQ = document.querySelectorAll(listaItens);
+        this.classeAtiva = 'ativo';
     }
-    if (listaPerguntasFAQ.length) {
-        listaPerguntasFAQ[0].classList.add(classeAtiva);
-        listaPerguntasFAQ[0].nextElementSibling.classList.add(classeAtiva);
 
-        listaPerguntasFAQ.forEach(pergunta => pergunta.addEventListener('click', ativarAcordeon));
+    toggleAcordeon(pergunta) {
+        pergunta.classList.toggle(this.classeAtiva);
+        pergunta.nextElementSibling.classList.toggle(this.classeAtiva);
+    }
+
+    adicionarEventoAcordeon() {
+        this.listaPerguntasFAQ.forEach(pergunta =>
+            pergunta.addEventListener('click', () =>
+                this.toggleAcordeon(pergunta)));
+    }
+
+    iniciar() {
+        if (this.listaPerguntasFAQ.length) {
+            this.toggleAcordeon(this.listaPerguntasFAQ[0]);//Abrir primeiro item da lista.
+            this.adicionarEventoAcordeon();
+        }
+        return this;
     }
 }
