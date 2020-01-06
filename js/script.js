@@ -1,7 +1,7 @@
 import ScrollSuaveMenu from "./modules/scroll-suave.js";
 import ativarAnimacaoSections from "./modules/animacao-sections.js";
 import AcordeonAnimacao from "./modules/animacao-faq.js";
-import mostrarDescricaoAnimais from "./modules/tab-animais.js";
+import TabDescricaoAnimais from "./modules/tab-animais.js";
 import mostrarModalLogin from "./modules/modal.js";
 import mostrarToolTip from "./modules/tool-tip.js";
 import mostrarDropDownMenu from "./modules/dropdown-menu.js";
@@ -16,8 +16,10 @@ scrollSuave.iniciar();
 const acordeonAnimacao = new AcordeonAnimacao('[data-tab="acordeon"] dt');
 acordeonAnimacao.iniciar();
 
+const tabDescricaoAnimais = new TabDescricaoAnimais('[data-tab="menu"] li', '[data-tab="content"] section');
+tabDescricaoAnimais.iniciar();
+
 ativarAnimacaoSections();
-mostrarDescricaoAnimais();
 mostrarModalLogin();
 mostrarToolTip();
 mostrarDropDownMenu();
