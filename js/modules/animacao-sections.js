@@ -1,10 +1,13 @@
-export default function ativarAnimacaoSections() { //🔽
-    const sections = document.querySelectorAll('[data-anime="scroll"]');
-    const proporcaoTela60porCento = window.innerHeight * .6;
-    function animarScrollSection() {
-        sections.forEach(section => {
+export default class AnimacaoSection {
+    constructor(secoes) {
+        this.sections = document.querySelectorAll(secoes);
+        this.proporcaoTela60porCento = window.innerHeight * .6;
+        this.animarScrollSection = this.animarScrollSection.bind(this);
+    }
+    animarScrollSection() {
+        this.sections.forEach(section => {
             const sectionTopo = section.getBoundingClientRect().top;
-            const isTelaMetade = (sectionTopo - proporcaoTela60porCento) < 0;
+            const isTelaMetade = (sectionTopo - this.proporcaoTela60porCento) < 0;
 
             if (isTelaMetade)
                 section.classList.add('ativo');
@@ -12,7 +15,11 @@ export default function ativarAnimacaoSections() { //🔽
                 section.classList.remove('ativo');
         });
     }
-    if (sections.length) {
-        window.addEventListener('scroll', animarScrollSection);
+    iniciar() {
+        if (this.sections.length) {
+            this.animarScrollSection();
+            window.addEventListener('scroll', this.animarScrollSection);
+        }
+        return this;
     }
 }
