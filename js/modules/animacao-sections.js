@@ -16,7 +16,6 @@ export default class AnimacaoSection {
         });
     }
     verificarDistancia() {
-        console.log('teste');
         this.distanciasTop.forEach(cadaDistancia => {
             if (window.pageYOffset > cadaDistancia.topoSecao)
                 cadaDistancia.elemento.classList.add('ativo');
