@@ -7,7 +7,7 @@ import ToolTip from "./modules/tool-tip.js";
 import DropDownMenu from "./modules/dropdown-menu.js";
 import MenuMobile from "./modules/menu-mobile.js";
 import tratarDadosAnimais from "./modules/numeros-animais.js";
-import mostrarExpediente from "./modules/expediente.js";
+import Expediente from "./modules/expediente.js";
 import mostrarPrecoBitcoin from "./modules/cafezinho-bitcoin.js";
 
 const scrollSuave = new ScrollSuaveMenu('[data-tab="nav"] a[href^="#"]');
@@ -34,6 +34,10 @@ dropDownMenu.iniciar();
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="lista-menu"]');
 menuMobile.iniciar();
 
-mostrarExpediente();
+const expediente = new Expediente('[data-semana]');
+console.log(expediente);
+
+expediente.iniciar();
+
 tratarDadosAnimais();
 mostrarPrecoBitcoin();
