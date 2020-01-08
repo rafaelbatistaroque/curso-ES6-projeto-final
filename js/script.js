@@ -4,7 +4,7 @@ import AcordeonAnimacao from "./modules/animacao-faq.js";
 import TabDescricaoAnimais from "./modules/tab-animais.js";
 import ModalLogin from "./modules/modal.js";
 import ToolTip from "./modules/tool-tip.js";
-import mostrarDropDownMenu from "./modules/dropdown-menu.js";
+import DropDownMenu from "./modules/dropdown-menu.js";
 import mostrarMenuMobile from "./modules/menu-mobile.js";
 import tratarDadosAnimais from "./modules/numeros-animais.js";
 import mostrarExpediente from "./modules/expediente.js";
@@ -28,8 +28,9 @@ toolTipMapa.iniciar();
 const animacaoSection = new AnimacaoSection('[data-anime="scroll"]');
 animacaoSection.iniciar();
 
+const dropDownMenu = new DropDownMenu('[data-dropdown]');
+dropDownMenu.iniciar();
 
-mostrarDropDownMenu();
 mostrarMenuMobile();
 mostrarExpediente();
 tratarDadosAnimais();

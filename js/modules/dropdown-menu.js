@@ -1,20 +1,33 @@
 import verificarCliqueLadoFora from "./clique-lado-fora.js";
 
-export default function mostrarDropDownMenu() {
-    const dropdownMenus = document.querySelectorAll('[data-dropdown]');
-    const tiposInteracao = ['click', 'touchstart'];
+export default class DropDownMenu {
+    constructor(dropDownMenu) {
+        this.dropdownMenus = document.querySelectorAll(dropDownMenu);
+        this.tiposInteracao = ['click', 'touchstart'];
+        this.ativarDropDownMenu = this.ativarDropDownMenu.bind(this);
+        this.classeAtiva = 'ativo';
+    }
 
-    dropdownMenus.forEach(itemMenu => {
-        tiposInteracao.forEach(interacao => {
-            itemMenu.addEventListener(interacao, tratarCliqueMenu);
-        });
-    });
-    function tratarCliqueMenu(event) {
+    ativarDropDownMenu(event) {
         event.preventDefault();
-        this.classList.add('ativo');
-        verificarCliqueLadoFora(this, tiposInteracao, () => {
-            this.classList.remove('ativo');
+        const elementoAtual = event.currentTarget;
+        elementoAtual.classList.add(this.classeAtiva);
+        verificarCliqueLadoFora(elementoAtual, this.tiposInteracao, () => {
+            elementoAtual.classList.remove(this.classeAtiva);
         });
+    }
+    adicionarEventoDropDown() {
+        this.dropdownMenus.forEach(itemMenu => {
+            this.tiposInteracao.forEach(interacao => {
+                itemMenu.addEventListener(interacao, this.ativarDropDownMenu);
+            });
+        });
+    }
+    iniciar() {
+        if (this.dropdownMenus.length) {
+            this.adicionarEventoDropDown();
+        }
+        return this;
     }
 }
 
