@@ -1,18 +1,32 @@
-export default function ativarAnimacaoSections() { //🔽
-    const sections = document.querySelectorAll('[data-anime="scroll"]');
-    const proporcaoTela60porCento = window.innerHeight * .6;
-    function animarScrollSection() {
-        sections.forEach(section => {
-            const sectionTopo = section.getBoundingClientRect().top;
-            const isTelaMetade = (sectionTopo - proporcaoTela60porCento) < 0;
-
-            if (isTelaMetade)
-                section.classList.add('ativo');
-            else if (section.classList.contains('ativo'))
-                section.classList.remove('ativo');
+export default class AnimacaoSection {
+    constructor(secoes) {
+        this.sections = document.querySelectorAll(secoes);
+        this.proporcaoTela60porCento = window.innerHeight * .6;
+        this.verificarDistancia = this.verificarDistancia.bind(this);
+    }
+    obterDistanciaTopVerticalScroll() {
+        this.distanciasTop = [...this.sections].map(secao => {
+            const topoSecao = secao.offsetTop;
+            return {
+                elemento: secao,
+                topoSecao: Math.floor(topoSecao - this.proporcaoTela60porCento)
+            };
         });
     }
-    if (sections.length) {
-        window.addEventListener('scroll', animarScrollSection);
+    verificarDistancia() {
+        this.distanciasTop.forEach(cadaDistancia => {
+            if (window.pageYOffset > cadaDistancia.topoSecao)
+                cadaDistancia.elemento.classList.add('ativo');
+            else if (cadaDistancia.elemento.classList.contains('ativo'))
+                cadaDistancia.elemento.classList.remove('ativo');
+        });
+    }
+    iniciar() {
+        if (this.sections.length) {
+            this.obterDistanciaTopVerticalScroll();
+            this.verificarDistancia();
+            window.addEventListener('scroll', this.verificarDistancia);
+        }
+        return this;
     }
 }

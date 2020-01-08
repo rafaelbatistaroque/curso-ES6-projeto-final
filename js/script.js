@@ -1,5 +1,5 @@
 import ScrollSuaveMenu from "./modules/scroll-suave.js";
-import ativarAnimacaoSections from "./modules/animacao-sections.js";
+import AnimacaoSection from "./modules/animacao-sections.js";
 import AcordeonAnimacao from "./modules/animacao-faq.js";
 import TabDescricaoAnimais from "./modules/tab-animais.js";
 import ModalLogin from "./modules/modal.js";
@@ -25,7 +25,10 @@ janelaModalLogin.iniciar();
 const toolTipMapa = new ToolTip('[data-tooltip]');
 toolTipMapa.iniciar();
 
-ativarAnimacaoSections();
+const animacaoSection = new AnimacaoSection('[data-anime="scroll"]');
+animacaoSection.iniciar();
+
+
 mostrarDropDownMenu();
 mostrarMenuMobile();
 mostrarExpediente();
