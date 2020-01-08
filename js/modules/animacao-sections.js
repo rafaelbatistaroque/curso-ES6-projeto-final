@@ -2,23 +2,30 @@ export default class AnimacaoSection {
     constructor(secoes) {
         this.sections = document.querySelectorAll(secoes);
         this.proporcaoTela60porCento = window.innerHeight * .6;
-        this.animarScrollSection = this.animarScrollSection.bind(this);
+        this.verificarDistancia = this.verificarDistancia.bind(this);
     }
-    animarScrollSection() {
-        this.sections.forEach(section => {
-            const sectionTopo = section.getBoundingClientRect().top;
-            const isTelaMetade = (sectionTopo - this.proporcaoTela60porCento) < 0;
-
-            if (isTelaMetade)
-                section.classList.add('ativo');
-            else if (section.classList.contains('ativo'))
-                section.classList.remove('ativo');
+    obterDistanciaTopVerticalScroll() {
+        this.distanciasTop = [...this.sections].map(secao => {
+            const topoSecao = secao.offsetTop;
+            return {
+                elemento: secao,
+                topoSecao: Math.floor(topoSecao - this.proporcaoTela60porCento)
+            };
+        });
+    }
+    verificarDistancia() {
+        this.distanciasTop.forEach(cadaDistancia => {
+            if (window.pageYOffset > cadaDistancia.topoSecao)
+                cadaDistancia.elemento.classList.add('ativo');
+            else if (cadaDistancia.elemento.classList.contains('ativo'))
+                cadaDistancia.elemento.classList.remove('ativo');
         });
     }
     iniciar() {
         if (this.sections.length) {
-            this.animarScrollSection();
-            window.addEventListener('scroll', this.animarScrollSection);
+            this.obterDistanciaTopVerticalScroll();
+            this.verificarDistancia();
+            window.addEventListener('scroll', this.verificarDistancia);
         }
         return this;
     }
