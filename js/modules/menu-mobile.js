@@ -1,22 +1,30 @@
 import verificarCliqueLadoFora from "./clique-lado-fora.js";
 
-export default function mostrarMenuMobile() {
-    const btnMenu = document.querySelector('[data-menu="button"]');
-    const dropDown = document.querySelector('[data-menu="lista-menu"]');
-    const tiposInteracao = ['click', 'touchstart'];
+export default class MenuMobile {
+    constructor(btnMenu, listaDopDown) {
+        this.btnMenu = document.querySelector(btnMenu);
+        this.dropDown = document.querySelector(listaDopDown);
+        this.tiposInteracao = ['click', 'touchstart'];
+        this.classeAtivo = 'ativo';
+        this.abrirMenu = this.abrirMenu.bind(this);
+    }
 
-    function abrirMenu() {
-        btnMenu.classList.add('ativo');
-        dropDown.classList.add('ativo');
-        verificarCliqueLadoFora(dropDown, tiposInteracao, () => {
-            btnMenu.classList.remove('ativo');
-            dropDown.classList.remove('ativo');
+    abrirMenu() {
+        this.btnMenu.classList.add(this.classeAtivo);
+        this.dropDown.classList.add(this.classeAtivo);
+        verificarCliqueLadoFora(this.dropDown, this.tiposInteracao, () => {
+            this.btnMenu.classList.remove(this.classeAtivo);
+            this.dropDown.classList.remove(this.classeAtivo);
         });
     }
 
-    if (btnMenu) {
-        tiposInteracao.forEach(interacao => {
-            btnMenu.addEventListener(interacao, abrirMenu);
-        });
+    adicionarEventoMenuMobile() {
+        this.tiposInteracao.forEach(interacao =>
+            this.btnMenu.addEventListener(interacao, this.abrirMenu));
+    }
+    iniciar() {
+        if (this.btnMenu && this.dropDown)
+            this.adicionarEventoMenuMobile();
+        return this;
     }
 }

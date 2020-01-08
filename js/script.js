@@ -5,7 +5,7 @@ import TabDescricaoAnimais from "./modules/tab-animais.js";
 import ModalLogin from "./modules/modal.js";
 import ToolTip from "./modules/tool-tip.js";
 import DropDownMenu from "./modules/dropdown-menu.js";
-import mostrarMenuMobile from "./modules/menu-mobile.js";
+import MenuMobile from "./modules/menu-mobile.js";
 import tratarDadosAnimais from "./modules/numeros-animais.js";
 import mostrarExpediente from "./modules/expediente.js";
 import mostrarPrecoBitcoin from "./modules/cafezinho-bitcoin.js";
@@ -31,7 +31,9 @@ animacaoSection.iniciar();
 const dropDownMenu = new DropDownMenu('[data-dropdown]');
 dropDownMenu.iniciar();
 
-mostrarMenuMobile();
+const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="lista-menu"]');
+menuMobile.iniciar();
+
 mostrarExpediente();
 tratarDadosAnimais();
 mostrarPrecoBitcoin();
