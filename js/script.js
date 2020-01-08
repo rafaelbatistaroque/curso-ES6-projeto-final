@@ -35,8 +35,6 @@ const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="lista-men
 menuMobile.iniciar();
 
 const expediente = new Expediente('[data-semana]');
-console.log(expediente);
-
 expediente.iniciar();
 
 tratarDadosAnimais();
