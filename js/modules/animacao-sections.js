@@ -1,8 +1,10 @@
+import debounce from '../settings/debounce.js';
+
 export default class AnimacaoSection {
     constructor(secoes) {
         this.sections = document.querySelectorAll(secoes);
         this.proporcaoTela60porCento = window.innerHeight * .6;
-        this.verificarDistancia = this.verificarDistancia.bind(this);
+        this.verificarDistancia = debounce(this.verificarDistancia.bind(this), 90);
     }
     obterDistanciaTopVerticalScroll() {
         this.distanciasTop = [...this.sections].map(secao => {
@@ -14,6 +16,7 @@ export default class AnimacaoSection {
         });
     }
     verificarDistancia() {
+        console.log('teste');
         this.distanciasTop.forEach(cadaDistancia => {
             if (window.pageYOffset > cadaDistancia.topoSecao)
                 cadaDistancia.elemento.classList.add('ativo');
